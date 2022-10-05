@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import { act } from 'react-dom/test-utils';
 import { Route, MemoryRouter, Routes } from 'react-router-dom';
 import Store from '../Store';
@@ -9,13 +9,18 @@ beforeEach(() => {
 });
 
 jest.mock('../ProductCard', () => function mockProductCard(product) {
-  return <div id={product.id} key={product.title} data-testid={product.id} />;
+  return (
+    <div id={product.id} data-testid={product.id} />
+  );
 });
 
 describe('Store', () => {
-  it.skip('renders loading text', () => {
-    render(<Store />);
-    expect(screen.getByText(/loading/)).toBeInTheDocument();
+  it('renders loading text', async () => {
+    render(<Store handleAddToCart={jest.fn} />);
+    expect(screen.getByText(/loading/i)).toBeInTheDocument();
+    await waitFor(() => {
+      expect(screen.queryByText(/loading/i)).not.toBeInTheDocument();
+    });
   });
 
   it('renders multiple ProductCard components', async () => {

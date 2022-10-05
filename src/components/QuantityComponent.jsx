@@ -53,7 +53,7 @@ function QuantityComponent({
   }, [quantity]);
 
   return (
-    <Container>
+    <Container data-testid="quantity-component">
       <QuantityBtn
         onClick={handleQuantity}
         data-id={productId}
@@ -69,6 +69,7 @@ function QuantityComponent({
         $width={inputWidth}
         data-id={productId}
         data-parent={parentId}
+        data-testid="quantity-input"
       />
       <QuantityBtn
         onClick={handleQuantity}

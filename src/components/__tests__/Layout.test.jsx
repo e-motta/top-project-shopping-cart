@@ -1,5 +1,5 @@
 import React from 'react';
-import { getByRole, render, screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { Outlet } from 'react-router-dom';
 import userEvent from '@testing-library/user-event';
 import Layout from '../Layout';
@@ -42,16 +42,16 @@ jest.mock('../Cart', () => function mockCart({
         {String(delayCartRender)}
         {cartProducts.map((p) => p.id)}
       </div>
-      <button type="button" onClick={toggleCartVisibility} data-testid="toggleCartVisibility">
+      <button type="button" onClick={toggleCartVisibility} id="toggleCartVisibility">
         cart button
       </button>
-      <button type="button" onClick={handleProductsQuantityInput} data-testid="handleProductsQuantityInput">
+      <button type="button" onClick={handleProductsQuantityInput} id="handleProductsQuantityInput">
         button
       </button>
-      <button type="button" onClick={handleProductsQuantity} data-testid="handleProductsQuantity">
+      <button type="button" onClick={handleProductsQuantity} id="handleProductsQuantity">
         button
       </button>
-      <button type="button" onClick={handleDeleteProduct} data-testid="handleDeleteProduct">
+      <button type="button" onClick={handleDeleteProduct} id="handleDeleteProduct">
         button
       </button>
     </>
@@ -59,7 +59,7 @@ jest.mock('../Cart', () => function mockCart({
 });
 
 describe('Layout', () => {
-  it('renders GlobalNav component and main>Outlet', () => {
+  it('renders GlobalNav component and main>Outlet; does not render Cart component', () => {
     const { container } = render(
       <Layout
         products={[{ id: 1 }]}
@@ -92,8 +92,8 @@ describe('Layout', () => {
 `);
   });
 
-  it('renders the Cart component', () => {
-    render(
+  it('renders GlobalNav component, main>Outlet, and Cart component', () => {
+    const { container } = render(
       <Layout
         products={[{ id: 1 }]}
         handleProductsQuantityInput={jest.fn}
@@ -103,8 +103,57 @@ describe('Layout', () => {
       { wrapper: BrowserRouter },
     );
 
-    const cartButton = getByRole('button', { name: /cart button/i });
+    const cartButton = screen.getByRole('button', { name: /cart button/i });
     userEvent.click(cartButton);
     expect(screen.getByText(/cart component/i)).toBeInTheDocument();
+    expect(container).toMatchInlineSnapshot(`
+<div>
+  <div
+    class="sc-bczRLJ hkJeKW"
+  >
+    <div>
+      GobalNav
+       
+      false
+      NaN
+    </div>
+    <button
+      type="button"
+    >
+      cart button
+    </button>
+    <main />
+  </div>
+  <div>
+    Cart component
+    false
+    1
+  </div>
+  <button
+    id="toggleCartVisibility"
+    type="button"
+  >
+    cart button
+  </button>
+  <button
+    id="handleProductsQuantityInput"
+    type="button"
+  >
+    button
+  </button>
+  <button
+    id="handleProductsQuantity"
+    type="button"
+  >
+    button
+  </button>
+  <button
+    id="handleDeleteProduct"
+    type="button"
+  >
+    button
+  </button>
+</div>
+`);
   });
 });

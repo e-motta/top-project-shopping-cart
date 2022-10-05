@@ -82,6 +82,7 @@ function CartProduct({
         <TrashIconButton
           data-id={product.id}
           onClick={handleDeleteProduct}
+          data-testid="trash-icon"
         >
           <TrashIcon
             path={mdiTrashCan}

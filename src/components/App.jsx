@@ -1,10 +1,11 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 
 import Layout from './Layout';
 import Home from './Home';
 import Store from './Store';
 import ProductPage from './ProductPage';
+import NotFound from './NotFound';
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -99,33 +100,32 @@ function App() {
   });
 
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route
-          element={(
-            <Layout
-              products={products}
-              handleProductsQuantityInput={handleProductsQuantityInput}
-              handleProductsQuantity={handleProductsQuantity}
-              handleDeleteProduct={handleDeleteProduct}
-            />
-          )}
-        >
-          <Route index element={<Home />} />
-          <Route path="" element={<Home />} />
-          <Route path="store" element={<Store />} />
-          <Route path="store/:filter" element={<Store />} />
-          <Route
-            path="products/:id"
-            element={(
-              <ProductPage
-                handleAddToCart={handleAddToCart}
-              />
-            )}
+    <Routes>
+      <Route
+        element={(
+          <Layout
+            products={products}
+            handleProductsQuantityInput={handleProductsQuantityInput}
+            handleProductsQuantity={handleProductsQuantity}
+            handleDeleteProduct={handleDeleteProduct}
           />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+          )}
+      >
+        <Route index element={<Home />} />
+        <Route path="" element={<Home />} />
+        <Route path="store" element={<Store />} />
+        <Route path="store/:filter" element={<Store />} />
+        <Route
+          path="products/:id"
+          element={(
+            <ProductPage
+              handleAddToCart={handleAddToCart}
+            />
+            )}
+        />
+        <Route path="*" element={<NotFound />} />
+      </Route>
+    </Routes>
   );
 }
 

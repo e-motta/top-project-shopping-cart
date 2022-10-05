@@ -50,10 +50,10 @@ function Store() {
       <ProductsContainer>
         {filter && validCategories.includes(filter)
           ? filteredProducts.map((p) => (
-            <ProductCard id={p.id} key={p.title} />
+            <ProductCard id={p.id} key={p.title} data-testid={`product-card-${p.id}`} />
           ))
           : products.map((p) => (
-            <ProductCard id={p.id} key={p.title} />
+            <ProductCard id={p.id} key={p.title} data-testid={`product-card-${p.id}`} />
           ))}
       </ProductsContainer>
     </ContentContainer>

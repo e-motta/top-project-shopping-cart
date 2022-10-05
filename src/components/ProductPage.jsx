@@ -7,6 +7,7 @@ import { mdiStar } from '@mdi/js';
 
 import { Image, Loading, SubmitButton } from './StyledComponents';
 import QuantityComponent from './QuantityComponent';
+import NotFound from './NotFound';
 
 const Container = styled.div`
   background-color: #f7eeee;
@@ -107,6 +108,7 @@ function ProductPage({ handleAddToCart }) {
   });
 
   if (loading) return <Loading>Loading...</Loading>;
+  if (Object.keys(product).length === 0) return <NotFound />;
 
   return (
     <Container>
@@ -156,7 +158,6 @@ function ProductPage({ handleAddToCart }) {
         <Description>{product.description}</Description>
       </DetailsContainer>
     </Container>
-
   );
 }
 

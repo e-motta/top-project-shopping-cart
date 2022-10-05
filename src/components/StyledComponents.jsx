@@ -49,14 +49,10 @@ const Loading = styled(StyledH2EntireBackground)`
   color: black;
 `;
 
-const NotFound = styled(StyledH2EntireBackground)`
-  color: #363636;
-`;
-
 const ServerError = styled(StyledH2EntireBackground)`
   color: #360808;
 `;
 
 export {
-  ContentContainer, Image, StyledButton, SubmitButton, Loading, NotFound, ServerError,
+  ContentContainer, Image, StyledButton, SubmitButton, Loading, ServerError,
 };

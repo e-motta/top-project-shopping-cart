@@ -119,12 +119,12 @@ function GlobalNav({ isCartFull, totalProducts, toggleCartVisibility }) {
               {category}
             </StyledLink>
           ))}
-          <StyledButton type="button" onClick={toggleCartVisibility}>
+          <StyledButton type="button" onClick={toggleCartVisibility} data-testid="cart-button">
             <RoundContainer>
               {totalProducts
                 ? <TotalProducts>{totalProducts}</TotalProducts>
                 : ''}
-              <StyledIcon path={mdiCartOutline} size={1} data-testid="icon" $full={isCartFull} />
+              <StyledIcon path={mdiCartOutline} size={1} $full={isCartFull} />
             </RoundContainer>
           </StyledButton>
         </Nav>

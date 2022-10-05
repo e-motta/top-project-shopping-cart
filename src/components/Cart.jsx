@@ -9,7 +9,7 @@ import CartProduct from './CartProduct';
 import { SubmitButton } from './StyledComponents';
 
 const Container = styled.div`
-  background-color: #00000048;
+  background-color: ${({ $delayCartRender }) => ($delayCartRender ? '#0000005b' : '#00000010')};
   display: grid;
   grid-template-columns: 1fr auto;
   height: 100%;
@@ -19,7 +19,7 @@ const Container = styled.div`
   position: fixed;
   top: 0;
   right: ${({ $delayCartRender }) => ($delayCartRender ? '-20px' : '-720px')};
-  transition: right 1s;
+  transition: right 1s, background-color 1s;
 `;
 
 const CartContainer = styled.div`
@@ -86,7 +86,8 @@ function Cart({
     <Container $delayCartRender={delayCartRender}>
       <CloseCartArea
         type="button"
-        aria-label="close cart"
+        aria-hidden="true"
+        data-testid="close cart area"
         onClick={toggleCartVisibility}
       />
       <CartContainer>
@@ -97,7 +98,7 @@ function Cart({
             )
           </Title>
           <CloseButton onClick={toggleCartVisibility}>
-            <Icon path={mdiClose} size={1} />
+            <Icon path={mdiClose} size={1} aria-label="close cart" />
           </CloseButton>
         </TitleSection>
         <ProductsSection>
@@ -110,6 +111,7 @@ function Cart({
                   handleProductsQuantityInput={handleProductsQuantityInput}
                   handleProductsQuantity={handleProductsQuantity}
                   handleDeleteProduct={handleDeleteProduct}
+                  data-testid="cart-product"
                 />
               );
             }
@@ -129,7 +131,12 @@ function Cart({
                     .toFixed(2)}
                 </TotalValue>
               </TotalSection>
-              <SubmitButton onClick={() => setTimeout(() => alert('Not implemented'), 200)}>Proceed to Checkout</SubmitButton>
+              <SubmitButton
+                onClick={() => setTimeout(() => alert('Not implemented'), 200)}
+              >
+                Proceed to Checkout
+
+              </SubmitButton>
             </>
           )
           : (

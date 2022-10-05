@@ -11,27 +11,27 @@ describe('Home component', () => {
     class="sc-bczRLJ fGSbSb"
   >
     <div
-      class="sc-papXJ ekvpWp"
+      class="sc-ftvSup kVUcwg"
     >
       <div
-        class="sc-jqUVSM fwbawk"
+        class="sc-papXJ EdTBl"
       >
         <img
           alt="homepage image"
-          class="sc-kDDrLX evmRFV"
+          class="sc-jqUVSM dRYAeq"
           src="home-bg.jpg"
         />
       </div>
       <div
-        class="sc-iqcoie ecnLpb"
+        class="sc-kDDrLX dHQHje"
       >
         <p
-          class="sc-crXcEl cMmMnn"
+          class="sc-iqcoie hXlBHM"
         >
           Lorem ipsum dolor, sit amet consectetur adipisicing elit. Asperiores distinctio debitis amet neque quasi qui repellat reprehenderit ducimus pariatur laborum. Exercitationem quaerat optio nulla. Consectetur sed in sunt quisquam sint dolores voluptatem voluptate amet repudiandae a velit id officiis delectus expedita placeat deserunt architecto, ratione est tempore non saepe.
         </p>
         <p
-          class="sc-crXcEl cMmMnn"
+          class="sc-iqcoie hXlBHM"
         >
           Nulla, nam deleniti itaque ea omnis quidem facere nobis tempore!
         </p>
