@@ -98,7 +98,6 @@ function GlobalNav({ isCartFull, totalProducts, toggleCartVisibility }) {
       .catch(() => {
         setCategories([]);
         setLoading(false);
-      // TODO: redirect to error page
       });
   }, []);
 

@@ -31,7 +31,6 @@ function Store() {
       .catch(() => {
         setProducts([]);
         setLoading(false);
-        // TODO: redirect to error page
       });
   }, []);
 

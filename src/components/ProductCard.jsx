@@ -66,7 +66,6 @@ function ProductCard({ id }) {
       .catch(() => {
         setProduct({});
         setLoading(false);
-      // TODO: redirect to error page
       });
   }, []);
 

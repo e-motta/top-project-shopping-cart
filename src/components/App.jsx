@@ -6,25 +6,27 @@ import Home from './Home';
 import Store from './Store';
 import ProductPage from './ProductPage';
 import NotFound from './NotFound';
+import NetworkError from './NetworkError';
 
 function App() {
   const [products, setProducts] = useState([]);
+  const [networkError, setNetworkError] = useState(false);
 
   useEffect(() => {
     const fetchProductsData = async () => {
       const response = await fetch('https://fakestoreapi.com/products/');
+      if (!response.ok) setNetworkError(true);
       const data = await response.json();
-
       const productsData = data.map((p) => ({ ...p, quantity: 0 }));
-
-      setProducts(productsData);
+      return productsData;
     };
 
-    fetchProductsData()
+    const productsData = fetchProductsData()
       .catch(() => {
-        setProducts([]);
-        // TODO: redirect to error page
+        setNetworkError(true);
       });
+
+    setProducts(productsData);
   }, []);
 
   const handleProductsQuantityInput = useCallback((e) => {
@@ -98,6 +100,8 @@ function App() {
       })
     ));
   });
+
+  if (networkError) return <NetworkError />;
 
   return (
     <Routes>

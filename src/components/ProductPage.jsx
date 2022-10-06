@@ -89,7 +89,6 @@ function ProductPage({ handleAddToCart }) {
       .catch(() => {
         setProduct({});
         setLoading(false);
-        // TODO: redirect to error page
       });
   }, []);
 
