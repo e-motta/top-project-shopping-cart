@@ -2,7 +2,7 @@
   "name": "top-project-shopping-cart",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://e-motta.github.io",
+  "homepage": "https://e-motta.github.io/top-project-shopping-cart",
   "dependencies": {
     "@mdi/js": "^7.0.96",
     "@mdi/react": "^1.6.1",
